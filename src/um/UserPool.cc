@@ -416,6 +416,8 @@ int UserPool::allocate(
 
         group->add_user(*oid);
 
+        if ( auth_driver == "ldap" && *it != 1 ) group->add_admin(*oid, error_str);
+
         gpool->update(group);
 
         group->unlock();
